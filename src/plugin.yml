@@ -1,0 +1,13 @@
+name: FFA
+author: NullChips
+version: 1.0
+main: me.nullchips.ffa.FFA
+
+commands:
+    createffaarena:
+        description: Creates an FFA arena.
+
+permissions:
+    ffa.joinarena:
+        description: Join an FFA arena.
+        default: true
