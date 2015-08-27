@@ -7,6 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import me.nullchips.ffa.FFA;
 import me.nullchips.ffa.threads.ArenaCreation;
 import me.nullchips.ffa.utils.ChatUtils;
 
@@ -22,7 +23,7 @@ public class CreateArena implements CommandExecutor {
 			Player p = (Player) sender;
 			
 			if(!p.hasPermission("ffa.create")) {
-				p.sendMessage(ChatColor.RED + "You don't have permission to perform this command.");
+				ChatUtils.noPermission(p);
 				return false;
 			}
 			
@@ -32,6 +33,9 @@ public class CreateArena implements CommandExecutor {
 			}
 			
 			String createdArenaId = args[0];
+			if(FFA.getPlugin().getConfig().contains("Arenas." + createdArenaId)) {
+				ChatUtils.message(p, ChatColor.RED + "That arena already exists! In order to get rid of it, delete it from the config!");
+			}
 			Location createdArenaSpawn = p.getLocation();
 			int createdArenaSpawnHeight = p.getLocation().getBlockX()-10;
 			
