@@ -6,8 +6,13 @@ main: me.nullchips.ffa.FFA
 commands:
     createffaarena:
         description: Creates an FFA arena.
+    ffa:
+        description: Join an FFA arena.
 
 permissions:
     ffa.joinarena:
         description: Join an FFA arena.
         default: true
+    ffa.create:
+        description: Create an FFA arena.
+        default: op

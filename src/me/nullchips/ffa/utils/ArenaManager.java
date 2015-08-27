@@ -2,46 +2,27 @@ package me.nullchips.ffa.utils;
 
 import java.util.ArrayList;
 
-import org.bukkit.entity.Player;
-
 import me.nullchips.ffa.FFA;
-import me.nullchips.ffa.handlers.Arena;
 
 public class ArenaManager {
-	
+
 	SettingsManager settings = FFA.getSettings();
-	
-	private ArrayList<Arena> arenas;
+
+	public static ArrayList<String> allArenas;
 
 	public ArenaManager() {
-		this.arenas = new ArrayList<Arena>();
+		ArenaManager.allArenas = new ArrayList<String>();
 		loadArenas();
 	}
 
 	public void loadArenas() {
 
 		if (settings.getConfig().get("Arenas") != null) {
-			for (String arenaName : settings.getConfig().getConfigurationSection("Arenas").getKeys(true)) {
-				if (!arenaName.contains(".")) {
-					arenas.add(new Arena(arenaName));
+			for (String arenaId : settings.getConfig().getConfigurationSection("Arenas").getKeys(true)) {
+				if (!arenaId.contains(".")) {
+					allArenas.add(arenaId);
 				}
 			}
 		}
 	}
-
-	public Arena getArena(String arenaName) {
-		for (Arena arena : arenas)
-			if (arena.getName().equalsIgnoreCase(arenaName))
-				return arena;
-		return null;
-	}
-
-	public Arena getArena(Player player) {
-
-		for (Arena arena : arenas)
-			if (arena.isPlayer(player.getName()))
-				return arena;
-		return null;
-	}
-
 }
