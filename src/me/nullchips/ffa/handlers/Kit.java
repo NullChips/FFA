@@ -10,10 +10,12 @@ public class Kit {
 	
 	private int displayItem;
 	private String displayName;
+	private int price;
 	
 	public Kit(String name) {
-		this.setDisplayName(name);
-		this.setDisplayItem((int) FFA.getPlugin().getConfig().get("Kits." + name + ".DisplayItem"));
+		this.displayName = name;
+		this.displayItem = (int) FFA.getPlugin().getConfig().get("Kits." + name + ".DisplayItem");
+		this.price = (int) FFA.getPlugin().getConfig().get("Kits." + name + ".Price");
 	}
 
 	public String getDisplayName() {
@@ -30,6 +32,14 @@ public class Kit {
 
 	public void setDisplayItem(int displayItem) {
 		this.displayItem = displayItem;
+	}
+	
+	public int getPrice() {
+		return price;
+	}
+	
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
 	public ArrayList<String> getKits() {
