@@ -1,6 +1,7 @@
 package me.nullchips.ffa.handlers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.bukkit.Location;
 
@@ -8,9 +9,11 @@ import me.nullchips.ffa.FFA;
 
 public class Arena {
 	
+	public static ArrayList<String> allArenas = new ArrayList<String>();
+	public static HashMap<String, String> ffaPlayers = new HashMap<String, String>();
+	
 	private String name;
 	private Location spawn;
-	private ArrayList<String> players;
 	private int spawnHeight;
 	private String id;
 	private int displayItem;
@@ -21,7 +24,6 @@ public class Arena {
 		this.spawn = (Location) FFA.getPlugin().getConfig().get("Arenas." + name + ".Spawn");
 		this.displayItem = (int) FFA.getPlugin().getConfig().get("Arenas." + id + ".DisplayItem");
 		this.spawnHeight = (int) FFA.getPlugin().getConfig().get("Arenas." + id + ".SpawnHeight");
-		this.players = new ArrayList<String>();
 	}
 
 	public String getName() {
@@ -63,20 +65,20 @@ public class Arena {
 		FFA.getPlugin().saveConfig();
 	}
 
-	public ArrayList<String> getPlayers() {
-		return players;
+	public ArrayList<String> getArenas() {
+		return allArenas;
 	}
 
-	public void addPlayer(String player) {
-		this.players.add(player);
+	public void addArena(String arena) {
+		allArenas.add(arena);
 	}
 
-	public void removePlayer(String player) {
-		this.players.remove(player);
+	public void removeArena(String arena) {
+		allArenas.remove(arena);
 	}
 
-	public boolean isPlayer(String player) {
-		return this.players.contains(player);
+	public boolean isPlayer(String arena) {
+		return allArenas.contains(arena);
 	}
 
 }

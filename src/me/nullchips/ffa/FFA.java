@@ -12,6 +12,7 @@ import me.nullchips.ffa.commands.FFACommand;
 import me.nullchips.ffa.listeners.PlayerDeath;
 import me.nullchips.ffa.listeners.PlayerJoin;
 import me.nullchips.ffa.utils.ArenaManager;
+import me.nullchips.ffa.utils.KitManager;
 import me.nullchips.ffa.utils.SettingsManager;
 
 public class FFA extends JavaPlugin {
@@ -20,6 +21,7 @@ public class FFA extends JavaPlugin {
 	private static Plugin pl;
 	
 	public static ArenaManager arenaManager;
+	public static KitManager kitManager;
 	
 	public static SettingsManager getSettings() {
 		return settings;
@@ -32,6 +34,7 @@ public class FFA extends JavaPlugin {
 		settings.setup(pl);
 		
 		arenaManager = new ArenaManager();
+		kitManager = new KitManager();
 		
 		getCommand("createffaarena").setExecutor(new CreateArena());
 		getCommand("ffa").setExecutor(new FFACommand());
