@@ -2,24 +2,35 @@ package me.nullchips.ffa.handlers;
 
 import java.util.ArrayList;
 
+import org.bukkit.entity.Player;
+
 import me.nullchips.ffa.FFA;
 
 public class Kit {
 	
-	public static ArrayList<String> allKits = new ArrayList<String>();
+	public static ArrayList<Kit> allKits = new ArrayList<Kit>();
 	
 	private int displayItem;
 	private String displayName;
 	private int price;
 	
-	public Kit(String name) {
-		this.displayName = name;
-		this.displayItem = (int) FFA.getPlugin().getConfig().get("Kits." + name + ".DisplayItem");
-		this.price = (int) FFA.getPlugin().getConfig().get("Kits." + name + ".Price");
+	public Kit(String displayName) {
+		this.displayName = displayName;
+		this.displayItem = (int) FFA.getPlugin().getConfig().get("Kits." + displayName + ".DisplayItem");
+		this.price = (int) FFA.getPlugin().getConfig().get("Kits." + displayName + ".Price");
 	}
 
 	public String getDisplayName() {
 		return displayName;
+	}
+	
+	public static Kit getKit(Player p, Kit k) {
+		for(Kit kit : allKits) {
+			if(kit.getDisplayName().equalsIgnoreCase(kit.getDisplayName())) {
+				return k;
+			}
+		}
+		return null;
 	}
 
 	public void setDisplayName(String displayName) {
@@ -42,19 +53,19 @@ public class Kit {
 		this.price = price;
 	}
 	
-	public ArrayList<String> getKits() {
+	public ArrayList<Kit> getKits() {
 		return allKits;
 	}
 
-	public void addKit(String kit) {
+	public void addKit(Kit kit) {
 		allKits.add(kit);
 	}
 
-	public void removeKit(String kit) {
+	public void removeKit(Kit kit) {
 		allKits.remove(kit);
 	}
 
-	public boolean isKit(String kit) {
+	public boolean isKit(Kit kit) {
 		return allKits.contains(kit);
 	}
 
