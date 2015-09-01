@@ -70,14 +70,14 @@ public class Arena {
 	}
 
 	public void addArena(String arena) {
-		allArenas.add(arena);
+		allArenas.add(arena.trim());
 	}
 
 	public void removeArena(String arena) {
 		allArenas.remove(arena);
 	}
 
-	public boolean isPlayer(String arena) {
+	public boolean isAreana(String arena) {
 		return allArenas.contains(arena);
 	}
 

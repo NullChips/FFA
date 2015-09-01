@@ -40,7 +40,7 @@ public class CreateArena implements CommandExecutor {
 			Location createdArenaSpawn = p.getLocation();
 			int createdArenaSpawnHeight = p.getLocation().getBlockX()-10;
 			
-			ArenaCreation.createArena(createdArenaId, createdArenaSpawnHeight, createdArenaSpawn);
+			ArenaCreation.createArena(createdArenaId.trim(), createdArenaSpawnHeight, createdArenaSpawn);
 			ChatUtils.message(p, "Arena created! Be sure to go into the config file and change the default display item and the default arena name!");
 			
 			

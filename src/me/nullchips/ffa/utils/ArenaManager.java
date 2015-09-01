@@ -14,7 +14,7 @@ public class ArenaManager {
 		if (FFA.getPlugin().getConfig().get("Arenas") != null) {
 			for (String arenaId : FFA.getPlugin().getConfig().getConfigurationSection("Arenas").getKeys(true)) {
 				if (!arenaId.contains(".")) {
-					Arena.allArenas.add(arenaId);
+					Arena.allArenas.add(arenaId.trim());
 				}
 			}
 		}
