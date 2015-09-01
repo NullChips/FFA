@@ -3,6 +3,7 @@ package me.nullchips.ffa.handlers;
 import java.util.ArrayList;
 
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import me.nullchips.ffa.FFA;
 
@@ -12,12 +13,14 @@ public class Kit {
 	
 	private int displayItem;
 	private String displayName;
+	private String id;
 	private int price;
 	
-	public Kit(String displayName) {
-		this.displayName = displayName;
-		this.displayItem = (int) FFA.getPlugin().getConfig().get("Kits." + displayName + ".DisplayItem");
-		this.price = (int) FFA.getPlugin().getConfig().get("Kits." + displayName + ".Price");
+	public Kit(String id) {
+		this.id = id;
+		this.displayName = (String) FFA.getPlugin().getConfig().get("Kits." + id + ".DisplayName");
+		this.displayItem = (int) FFA.getPlugin().getConfig().get("Kits." + id + ".DisplayItem");
+		this.price = (int) FFA.getPlugin().getConfig().get("Kits." + id + ".Price");
 	}
 
 	public String getDisplayName() {
@@ -31,6 +34,10 @@ public class Kit {
 			}
 		}
 		return null;
+	}
+	
+	public String getId() {
+		return id;
 	}
 
 	public void setDisplayName(String displayName) {
@@ -67,6 +74,14 @@ public class Kit {
 
 	public boolean isKit(Kit kit) {
 		return allKits.contains(kit);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void giveKit(Player p, Kit k) {
+		for(Integer id : FFA.getPlugin().getConfig().getIntegerList("Kits." + k.getId() + ".Items")){
+			p.getInventory().clear();
+            p.getInventory().addItem(new ItemStack(id));
+        }
 	}
 
 }
