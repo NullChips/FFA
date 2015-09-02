@@ -10,7 +10,7 @@ import me.nullchips.ffa.FFA;
 import me.nullchips.ffa.handlers.Kit;
 import me.nullchips.ffa.utils.ChatUtils;
 
-public class KitCommnad implements CommandExecutor {
+public class KitCommand implements CommandExecutor {
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		
@@ -39,8 +39,12 @@ public class KitCommnad implements CommandExecutor {
 			
 			Kit k = new Kit(id);
 			
-			k.giveKit(p, k);
+			String kitId = k.getId();
+			
+			//k.giveKit(p, kitId);
 			ChatUtils.message(p, "You have been given the kit: " + ChatColor.AQUA + k.getId());
+			
+			p.sendMessage(kitId);
 			
 		}
 		

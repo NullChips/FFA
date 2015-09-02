@@ -1,6 +1,7 @@
 package me.nullchips.ffa.handlers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -8,14 +9,14 @@ import org.bukkit.inventory.ItemStack;
 import me.nullchips.ffa.FFA;
 
 public class Kit {
-	
+
 	public static ArrayList<Kit> allKits = new ArrayList<Kit>();
-	
+
 	private int displayItem;
 	private String displayName;
 	private String id;
 	private int price;
-	
+
 	public Kit(String id) {
 		this.id = id;
 		this.displayName = (String) FFA.getPlugin().getConfig().get("Kits." + id + ".DisplayName");
@@ -26,7 +27,7 @@ public class Kit {
 	public String getDisplayName() {
 		return displayName;
 	}
-	
+
 	public static Kit getKit(Player p, Kit k) {
 		for(Kit kit : allKits) {
 			if(kit.getDisplayName().equalsIgnoreCase(kit.getDisplayName())) {
@@ -35,7 +36,7 @@ public class Kit {
 		}
 		return null;
 	}
-	
+
 	public String getId() {
 		return id;
 	}
@@ -51,15 +52,15 @@ public class Kit {
 	public void setDisplayItem(int displayItem) {
 		this.displayItem = displayItem;
 	}
-	
+
 	public int getPrice() {
 		return price;
 	}
-	
+
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
+
 	public ArrayList<Kit> getKits() {
 		return allKits;
 	}
@@ -75,13 +76,17 @@ public class Kit {
 	public boolean isKit(Kit kit) {
 		return allKits.contains(kit);
 	}
-	
-	@SuppressWarnings("deprecation")
-	public void giveKit(Player p, Kit k) {
-		for(Integer id : FFA.getPlugin().getConfig().getIntegerList("Kits." + k.getId() + ".Items")){
-			p.getInventory().clear();
-            p.getInventory().addItem(new ItemStack(id));
-        }
-	}
 
+	@SuppressWarnings("unchecked")
+	public void giveKit(Player p, String id) {
+
+		ItemStack[] content;
+		content = ((List<ItemStack>) FFA.getPlugin().getConfig().get("Kits." + id +".Armor")).toArray(new ItemStack[0]);
+		p.getInventory().setArmorContents(content);
+		content = ((List<ItemStack>) FFA.getPlugin().getConfig().get("Kits." + id +".Items")).toArray(new ItemStack[0]);
+		p.getInventory().setContents(content);
+
+	}
 }
+
+

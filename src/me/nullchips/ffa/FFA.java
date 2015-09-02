@@ -8,8 +8,9 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.nullchips.ffa.commands.CreateArena;
+import me.nullchips.ffa.commands.CreateKit;
 import me.nullchips.ffa.commands.FFACommand;
-import me.nullchips.ffa.commands.KitCommnad;
+import me.nullchips.ffa.commands.KitCommand;
 import me.nullchips.ffa.listeners.PlayerDeath;
 import me.nullchips.ffa.listeners.PlayerJoin;
 import me.nullchips.ffa.utils.ArenaManager;
@@ -39,7 +40,8 @@ public class FFA extends JavaPlugin {
 		
 		getCommand("createffaarena").setExecutor(new CreateArena());
 		getCommand("ffa").setExecutor(new FFACommand());
-		getCommand("kit").setExecutor(new KitCommnad());
+		getCommand("kit").setExecutor(new KitCommand());
+		getCommand("createkit").setExecutor(new CreateKit());
 		
 		registerEvents(this, new PlayerJoin());
 		registerEvents(this, new PlayerDeath());

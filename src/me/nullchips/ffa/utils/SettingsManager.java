@@ -19,7 +19,7 @@ public class SettingsManager {
    
     public void setup(Plugin p) {
             config = p.getConfig();
-            p.saveDefaultConfig();
+            p.getConfig().options().copyDefaults(true);
             saveConfig();
     }
    

@@ -10,38 +10,43 @@ import me.nullchips.ffa.FFA;
 import me.nullchips.ffa.utils.ChatUtils;
 
 public class CreateKit implements CommandExecutor {
-	
+
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		if(cmd.getName().equalsIgnoreCase("createkit")) {
 			if(!(sender instanceof Player)) {
 				sender.sendMessage(ChatColor.RED + "The console cannot use this command!");
 				return false;
 			}
-			
+
 			Player p = (Player) sender;
-			
+
 			if(!p.hasPermission("ffa.createkit")) {
 				ChatUtils.noPermission(p);
 				return false;
 			}
-			
+
 			if(args.length == 0) {
 				p.sendMessage(ChatColor.RED + "Command usage: /createkit <id>");
 				return false;
 			}
-			
+
 			String id = args[0].trim();
-			
+
 			if(FFA.getPlugin().getConfig().contains("Kits." + id)) {
 				ChatUtils.message(p, ChatColor.RED + "That kit already exists! In order to get rid of it, delete it from the config!");
 				return false;
 			}
-			
+
 			FFA.getPlugin().getConfig().set("Kits." + id + ".DisplayName", id);
-			FFA.getPlugin().getConfig().set //TODO Find out how to set integer list.
-			
+			FFA.getPlugin().getConfig().set("Kits." + id + ".Price", 0);
+			FFA.getPlugin().getConfig().set("Kits." + id + ".DisplayItem", 267);
+			FFA.getPlugin().getConfig().set("Kits." + id + ".Armour", p.getInventory().getArmorContents());
+			FFA.getPlugin().getConfig().set("Kits." + id + ".Items", p.getInventory().getContents());
+			FFA.getPlugin().saveConfig();
+			return true;
 		}
 		return false;
+
 	}
 
 }
