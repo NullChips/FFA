@@ -13,7 +13,7 @@ public class KitManager {
 		if (FFA.getPlugin().getConfig().get("Kits") != null) {
 			for (String kitName : FFA.getPlugin().getConfig().getConfigurationSection("Kits").getKeys(true)) {
 				if (!kitName.contains(".")) {
-					Arena.allArenas.add(kitName);
+					Arena.allArenas.add(kitName.trim());
 				}
 			}
 		}

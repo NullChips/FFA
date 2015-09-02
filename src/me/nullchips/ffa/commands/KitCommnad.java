@@ -34,6 +34,7 @@ public class KitCommnad implements CommandExecutor {
 			
 			if(!FFA.getPlugin().getConfig().contains("Kits." + id)) {
 				ChatUtils.message(p, "That kit does not exist.");
+				return false;
 			}
 			
 			Kit k = new Kit(id);

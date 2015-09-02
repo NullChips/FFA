@@ -22,7 +22,7 @@ public class CreateArena implements CommandExecutor {
 			
 			Player p = (Player) sender;
 			
-			if(!p.hasPermission("ffa.create")) {
+			if(!p.hasPermission("ffa.createarena")) {
 				ChatUtils.noPermission(p);
 				return false;
 			}
@@ -35,7 +35,7 @@ public class CreateArena implements CommandExecutor {
 			String createdArenaId = args[0];
 			if(FFA.getPlugin().getConfig().contains("Arenas." + createdArenaId)) {
 				ChatUtils.message(p, ChatColor.RED + "That arena already exists! In order to get rid of it, delete it from the config!");
-				return true;
+				return false;
 			}
 			Location createdArenaSpawn = p.getLocation();
 			int createdArenaSpawnHeight = p.getLocation().getBlockX()-10;

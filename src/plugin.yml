@@ -8,11 +8,18 @@ commands:
         description: Creates an FFA arena.
     ffa:
         description: Join an FFA arena.
+    kit:
+        description: Get a kit.
+    createkit:
+        description: Creates a kit.
 
 permissions:
     ffa.joinarena:
         description: Join an FFA arena.
         default: true
-    ffa.create:
+    ffa.createarena:
         description: Create an FFA arena.
+        default: op
+    ffa.createkit:
+        description: Create a kit.
         default: op
