@@ -13,6 +13,7 @@ import me.nullchips.ffa.commands.FFACommand;
 import me.nullchips.ffa.commands.KitCommand;
 import me.nullchips.ffa.listeners.PlayerDeath;
 import me.nullchips.ffa.listeners.PlayerJoin;
+import me.nullchips.ffa.threads.JoinArenaMenu;
 import me.nullchips.ffa.utils.ArenaManager;
 import me.nullchips.ffa.utils.KitManager;
 import me.nullchips.ffa.utils.SettingsManager;
@@ -45,6 +46,7 @@ public class FFA extends JavaPlugin {
 		
 		registerEvents(this, new PlayerJoin());
 		registerEvents(this, new PlayerDeath());
+		registerEvents(this, new JoinArenaMenu(pl));
 	}
 
 	public void onDisable() {
@@ -63,6 +65,7 @@ public class FFA extends JavaPlugin {
 		}
 
 	}
+
 }
 
 //TODO Change name of plugin in plugin.yml file.

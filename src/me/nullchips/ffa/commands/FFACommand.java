@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.nullchips.ffa.FFA;
-import me.nullchips.ffa.handlers.Arena;
+import me.nullchips.ffa.threads.JoinArenaMenu;
 import me.nullchips.ffa.utils.ChatUtils;
 
 public class FFACommand implements CommandExecutor {
@@ -28,11 +28,9 @@ public class FFACommand implements CommandExecutor {
 			}
 			
 			if (args.length == 0) {
-				ChatUtils.message(p, "Arenas:");
-				for (String a : Arena.allArenas) {
-					ChatUtils.message(p, a);
-				}
-				return false;
+				JoinArenaMenu arenaMenu = new JoinArenaMenu(FFA.getPlugin());
+				arenaMenu.show(p);
+				return true;
 			}
 			
 			String id = args[0];
