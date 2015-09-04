@@ -3,6 +3,7 @@ package me.nullchips.ffa.threads;
 import java.util.Arrays;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,12 +29,12 @@ public class JoinArenaMenu implements Listener {
 
 		c=(createItem(Material.REDSTONE_BLOCK, "Close menu", null));
 		a1=(createItem(Material.getMaterial(a1DisplayItem), this.a1DisplayName, null));
-		
+
 		menu.setItem(8, c);
 		menu.setItem(4, a1);
-		
+
 		Bukkit.getServer().getPluginManager().registerEvents(this, p);
-		
+
 	}
 
 	private ItemStack createItem(Material mat, String name, String lore) {
@@ -55,10 +56,12 @@ public class JoinArenaMenu implements Listener {
 
 		if(e.getCurrentItem().getItemMeta().getDisplayName().contains(a1DisplayName)) {
 			Player p = (Player) e.getWhoClicked();
-			p.performCommand("arena 1");
+			Location l = (Location) FFA.getPlugin().getConfig().get("Arenas.1.SpawnLocation");
+
+			p.teleport(l);
 			return;
 		}
-		
+
 		if(e.getCurrentItem().getItemMeta().getDisplayName().contains("Close menu")) {
 			e.getWhoClicked().closeInventory();
 		}
