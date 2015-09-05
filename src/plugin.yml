@@ -23,3 +23,7 @@ permissions:
     ffa.createkit:
         description: Create a kit.
         default: op
+    ffa.kit.archer:
+        description: Get the Archer kit.
+        default: op
+    

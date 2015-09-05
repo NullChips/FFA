@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.nullchips.ffa.FFA;
-import me.nullchips.ffa.handlers.Kit;
+import me.nullchips.ffa.handlers.kits.Kit;
 import me.nullchips.ffa.utils.ChatUtils;
 
 public class KitCommand implements CommandExecutor {

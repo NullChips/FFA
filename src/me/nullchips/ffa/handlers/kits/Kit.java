@@ -1,14 +1,10 @@
-package me.nullchips.ffa.handlers;
+package me.nullchips.ffa.handlers.kits;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
-import me.nullchips.ffa.FFA;
-
-public class Kit {
+public abstract class Kit {
 
 	public static ArrayList<Kit> allKits = new ArrayList<Kit>();
 
@@ -16,13 +12,6 @@ public class Kit {
 	private String displayName;
 	private String id;
 	private int price;
-
-	public Kit(String id) {
-		this.id = id;
-		this.displayName = (String) FFA.getPlugin().getConfig().get("Kits." + id + ".DisplayName");
-		this.displayItem = (int) FFA.getPlugin().getConfig().get("Kits." + id + ".DisplayItem");
-		this.price = (int) FFA.getPlugin().getConfig().get("Kits." + id + ".Price");
-	}
 
 	public String getDisplayName() {
 		return displayName;
@@ -77,16 +66,7 @@ public class Kit {
 		return allKits.contains(kit);
 	}
 
-	@SuppressWarnings("unchecked")
-	public void giveKit(Player p, String id) {
-
-		ItemStack[] content;
-		content = ((List<ItemStack>) FFA.getPlugin().getConfig().get("Kits." + id +".Armor")).toArray(new ItemStack[0]);
-		p.getInventory().setArmorContents(content);
-		content = ((List<ItemStack>) FFA.getPlugin().getConfig().get("Kits." + id +".Items")).toArray(new ItemStack[0]);
-		p.getInventory().setContents(content);
-
-	}
+	public abstract void giveKit(Player  p);
 }
 
 
