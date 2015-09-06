@@ -6,6 +6,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import me.nullchips.ffa.utils.KitManager;
+
 public class KitCommand implements CommandExecutor {
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
@@ -17,8 +19,9 @@ public class KitCommand implements CommandExecutor {
 			}
 			
 			Player p = (Player) sender;
+			
+			p.openInventory(KitManager.getInstance().getKitMenu());
 
-			//TODO Create kit giving feature.
 		}
 		
 		return false;

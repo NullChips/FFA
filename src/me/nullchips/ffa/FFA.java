@@ -13,6 +13,7 @@ import me.nullchips.ffa.commands.KitCommand;
 import me.nullchips.ffa.listeners.PlayerDeath;
 import me.nullchips.ffa.listeners.PlayerJoin;
 import me.nullchips.ffa.threads.JoinArenaMenu;
+import me.nullchips.ffa.threads.KitMenu;
 import me.nullchips.ffa.utils.ArenaManager;
 import me.nullchips.ffa.utils.SettingsManager;
 
@@ -42,6 +43,7 @@ public class FFA extends JavaPlugin {
 		registerEvents(this, new PlayerJoin());
 		registerEvents(this, new PlayerDeath());
 		registerEvents(this, new JoinArenaMenu(pl));
+		registerEvents(this, new KitMenu(pl));
 	}
 
 	public void onDisable() {
