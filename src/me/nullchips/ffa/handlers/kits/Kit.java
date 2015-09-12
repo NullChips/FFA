@@ -8,7 +8,10 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import me.nullchips.ffa.FFA;
 
 /**
  * Represents a kit.
@@ -22,11 +25,15 @@ public abstract class Kit {
 	private ItemStack leggings;
 	private ItemStack boots;
 	private int price;
+	private int displayItem;
+	private String displayName;
 
 	public Kit(String name, int price) {
 		this.name = name;
 		this.items = new ArrayList<>();
-		this.setPrice(price);
+		this.price = FFA.getPlugin().getConfig().getInt("Kits." + name + ".Price");
+		this.displayItem = FFA.getPlugin().getConfig().getInt("Kits." + name + ".DisplayItem");
+		this.displayName = FFA.getPlugin().getConfig().getString("Kits." + name + ".DisplayName");
 	}
 
 
@@ -55,8 +62,18 @@ public abstract class Kit {
 		items.add(item);
 	}
 
-	public void giveKit(Player p) {
-
+	public void giveKit(Player p, Kit k) {
+		PlayerInventory pi = p.getInventory();
+		pi.setArmorContents(null);
+		pi.clear();
+		
+		for(ItemStack i : items) {
+			pi.addItem(i);
+		}
+		pi.setBoots(getBoots());
+		pi.setLeggings(getLeggings());
+		pi.setChestplate(getChestplate());
+		pi.setHelmet(getHelmet());
 	}
 	
 	public final void setHelmet(ItemStack helmet) {
@@ -91,14 +108,20 @@ public abstract class Kit {
 		return this.boots;
 	}
 
-
-
 	public int getPrice() {
 		return price;
 	}
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public final int getDisplayItem() {
+		return displayItem;
+	}
+
+	public final String getDisplayName() {
+		return displayName;
 	}
 
 }

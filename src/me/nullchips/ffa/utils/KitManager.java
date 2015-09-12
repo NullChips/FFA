@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -22,22 +23,22 @@ public class KitManager {
 		return instance;
 	}
 
-	private ArrayList<Kit> allKits;
+	public ArrayList<Kit> allKits = new ArrayList<Kit>();
 	private Inventory kitMenu;
 
 	private KitManager() {
-		allKits = new ArrayList<Kit>();
 
+		kitMenu = Bukkit.getServer().createInventory(null, InventoryType.CHEST, ChatColor.GOLD + "Kit Selector");
+		
 		allKits.add(new ArcherKit());
 		allKits.add(new MCSGKit());
 
-		kitMenu = Bukkit.getServer().createInventory(null, InventoryType.CHEST, ChatColor.GOLD + "Kit Selector");
-
 		for (Kit kit : allKits) {
-			ItemStack item = new ItemStack(kit.getItems().get(0).getType(), 1);
+			@SuppressWarnings("deprecation")
+			ItemStack item = new ItemStack(Material.getMaterial(kit.getDisplayItem()));
 			ItemMeta meta = item.getItemMeta();
 			meta.setDisplayName(kit.getName());
-			meta.setLore(Arrays.asList("Click here", "to select", "the " + kit.getName() + " kit."));
+			meta.setLore(Arrays.asList("Click to get", "the " + kit.getName() + " kit!", "", ChatColor.RED + "Price: " + kit.getPrice()));
 			item.setItemMeta(meta);
 			kitMenu.addItem(item);
 		}

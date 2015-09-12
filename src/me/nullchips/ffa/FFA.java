@@ -15,6 +15,7 @@ import me.nullchips.ffa.listeners.PlayerJoin;
 import me.nullchips.ffa.threads.JoinArenaMenu;
 import me.nullchips.ffa.threads.KitMenu;
 import me.nullchips.ffa.utils.ArenaManager;
+import me.nullchips.ffa.utils.KitManager;
 import me.nullchips.ffa.utils.SettingsManager;
 
 public class FFA extends JavaPlugin {
@@ -35,6 +36,9 @@ public class FFA extends JavaPlugin {
 		settings.setup(pl);
 		
 		arenaManager = new ArenaManager();
+		
+		@SuppressWarnings("unused")
+		KitManager kitManager = KitManager.getInstance();
 
 		getCommand("createffaarena").setExecutor(new CreateArena());
 		getCommand("ffa").setExecutor(new FFACommand());
@@ -49,7 +53,7 @@ public class FFA extends JavaPlugin {
 	public void onDisable() {
 		pl = null;
 	}
-
+	
 	public static Plugin getPlugin() {
 		return pl;
 	}
@@ -60,9 +64,8 @@ public class FFA extends JavaPlugin {
 		for (Listener listener : listeners) {
 			Bukkit.getServer().getPluginManager().registerEvents(listener, plugin);
 		}
-
 	}
-
+	
 }
 
 //TODO Change name of plugin in plugin.yml file.

@@ -7,6 +7,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 
+import me.nullchips.ffa.FFA;
+
 public class SettingsManager {
    
     Plugin p;
@@ -18,9 +20,7 @@ public class SettingsManager {
     }
    
     public void setup(Plugin p) {
-            config = p.getConfig();
-            p.getConfig().options().copyDefaults(true);
-            saveConfig();
+            FFA.getPlugin().saveDefaultConfig();
     }
    
     public FileConfiguration getConfig() {

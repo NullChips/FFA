@@ -25,6 +25,8 @@ public class JoinArenaMenu implements Listener {
 
 	@SuppressWarnings("deprecation")
 	public JoinArenaMenu(Plugin p) {
+		if(FFA.getPlugin().getConfig().contains("Arenas.1")) {
+		
 		menu = Bukkit.getServer().createInventory(null, 9, "Join an FFA arena:");
 
 		c=(createItem(Material.REDSTONE_BLOCK, "Close menu", null));
@@ -34,6 +36,7 @@ public class JoinArenaMenu implements Listener {
 		menu.setItem(4, a1);
 
 		Bukkit.getServer().getPluginManager().registerEvents(this, p);
+		}
 
 	}
 
