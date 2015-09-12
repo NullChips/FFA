@@ -29,9 +29,11 @@ public class KitManager {
 	private KitManager() {
 
 		kitMenu = Bukkit.getServer().createInventory(null, InventoryType.CHEST, ChatColor.GOLD + "Kit Selector");
-		
+
 		allKits.add(new ArcherKit());
 		allKits.add(new MCSGKit());
+		ItemStack close = new ItemStack(Material.REDSTONE_BLOCK);
+		close.getItemMeta().setDisplayName("Close menu");
 
 		for (Kit kit : allKits) {
 			@SuppressWarnings("deprecation")
@@ -42,6 +44,7 @@ public class KitManager {
 			item.setItemMeta(meta);
 			kitMenu.addItem(item);
 		}
+		kitMenu.setItem(8, close);
 	}
 
 	public Kit getKit(String name) {
@@ -52,10 +55,8 @@ public class KitManager {
 		}
 		return null;
 	}
-	
+
 	public Inventory getKitMenu() {
 		return kitMenu;
 	}
 }
-
-
