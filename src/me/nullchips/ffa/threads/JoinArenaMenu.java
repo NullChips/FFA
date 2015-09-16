@@ -15,8 +15,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
 import me.nullchips.ffa.FFA;
+import me.nullchips.ffa.utils.ArenaManager;
 
 public class JoinArenaMenu implements Listener {
+	
+	ArenaManager arenaManager = ArenaManager.getArenaManager();
 
 	private Inventory menu;
 	private ItemStack a1,c;
@@ -60,7 +63,7 @@ public class JoinArenaMenu implements Listener {
 		if(e.getCurrentItem().getItemMeta().getDisplayName().contains(a1DisplayName)) {
 			Player p = (Player) e.getWhoClicked();
 			Location l = (Location) FFA.getPlugin().getConfig().get("Arenas.1.SpawnLocation");
-
+			arenaManager.addArena1Player(p);
 			p.teleport(l);
 			return;
 		}

@@ -2,12 +2,10 @@ package me.nullchips.ffa.threads;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 import me.nullchips.ffa.handlers.kits.ArcherKit;
@@ -16,6 +14,8 @@ import me.nullchips.ffa.handlers.kits.MCSGKit;
 import me.nullchips.ffa.utils.KitManager;
 
 public class KitMenu implements Listener {
+	
+	KitManager km = KitManager.getInstance();
 
 	public KitMenu(Plugin p) {
 		Bukkit.getServer().getPluginManager().registerEvents(this, p);
@@ -26,20 +26,9 @@ public class KitMenu implements Listener {
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent e) {
 		
-		ItemStack air = new ItemStack(Material.AIR);
-		if (e.getCurrentItem() == null && e.getCurrentItem().hasItemMeta() )return;
+		Player  p = (Player) e.getWhoClicked();
 		
-		if(e.getCurrentItem() == air)  return;
-		
-		if(e.getCurrentItem() == null) return;
-		
-		if(!e.getCurrentItem().hasItemMeta()) return;
-		
-		Player p = (Player) e.getWhoClicked();
-
-		if (!e.getInventory().getName().equals(ChatColor.GOLD + "Kit Selector")) {
-			return;
-		}
+		if(!e.getInventory().equals(km.getKitMenu())) return;
 
 		e.setCancelled(true);
 		e.getWhoClicked().closeInventory();

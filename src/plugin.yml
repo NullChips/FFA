@@ -12,6 +12,8 @@ commands:
         description: Get a kit.
     createkit:
         description: Creates a kit.
+    removeffaplayer:
+        description: Only removes player from arena ArrayLists in this plugin.
 
 permissions:
     ffa.joinarena:

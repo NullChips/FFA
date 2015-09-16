@@ -9,7 +9,7 @@ import me.nullchips.ffa.FFA;
 
 public class Arena {
 	
-	public static ArrayList<String> allArenas = new ArrayList<String>();
+	public static ArrayList<Arena> allArenas = new ArrayList<Arena>();
 	public static HashMap<String, String> ffaPlayers = new HashMap<String, String>();
 	
 	private String name;
@@ -65,19 +65,19 @@ public class Arena {
 		FFA.getPlugin().saveConfig();
 	}
 
-	public ArrayList<String> getArenas() {
+	public ArrayList<Arena> getArenas() {
 		return allArenas;
 	}
 
-	public void addArena(String arena) {
-		allArenas.add(arena.trim());
+	public void addArena(Arena arena) {
+		allArenas.add(arena);
 	}
 
-	public void removeArena(String arena) {
+	public void removeArena(Arena arena) {
 		allArenas.remove(arena);
 	}
 
-	public boolean isAreana(String arena) {
+	public boolean isAreana(Arena arena) {
 		return allArenas.contains(arena);
 	}
 
