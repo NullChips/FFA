@@ -11,11 +11,7 @@ import me.nullchips.ffa.FFA;
 public class PlayerStatsFileUtils {
 
 	public void createFile(Player p) {
-		File pFileDir = new File(FFA.getPlugin().getDataFolder(), "Players");
-		if (!pFileDir.exists()) {
-			pFileDir.mkdirs();
-		}
-		File pFile = new File(FFA.getPlugin().getDataFolder(), "Players/" + p.getUniqueId().toString() + ".yml");
+		File pFile = new File(FFA.getPlugin().getDataFolder(), p.getUniqueId().toString() + ".yml");
 		if (!pFile.exists())
 			try {
 				pFile.createNewFile();
@@ -33,7 +29,7 @@ public class PlayerStatsFileUtils {
 	//****************************//
 
 	public String getPlayerName(String p) {
-		File pFile = new File(FFA.getPlugin().getDataFolder(), "Players/" + p + ".yml");
+		File pFile = new File(FFA.getPlugin().getDataFolder(), p + ".yml");
 		FileConfiguration pConfig = YamlConfiguration.loadConfiguration(pFile);
 		String name = pConfig.getString("User");
 		return name;
@@ -42,7 +38,7 @@ public class PlayerStatsFileUtils {
 	//****************************//
 
 	public boolean fileExists(String p) {
-		File pFile = new File(FFA.getPlugin().getDataFolder(), "Players/" + p + ".yml");
+		File pFile = new File(FFA.getPlugin().getDataFolder(),  p + ".yml");
 		if (pFile.exists()) {
 			return true;
 		}
@@ -53,7 +49,7 @@ public class PlayerStatsFileUtils {
 
 	public Integer getKills(String p)
 	{
-		File pFile = new File(FFA.getPlugin().getDataFolder(), "Players/" + p + ".yml");
+		File pFile = new File(FFA.getPlugin().getDataFolder(), p + ".yml");
 		FileConfiguration pConfig = YamlConfiguration.loadConfiguration(pFile);
 		int kills = pConfig.getInt("Kills");
 		return Integer.valueOf(kills);
@@ -62,7 +58,7 @@ public class PlayerStatsFileUtils {
 	//****************************//
 
 	public void addKill(String p) {
-		File pFile = new File(FFA.getPlugin().getDataFolder(), "Players/" + p + ".yml");
+		File pFile = new File(FFA.getPlugin().getDataFolder(), p + ".yml");
 		FileConfiguration pConfig = YamlConfiguration.loadConfiguration(pFile);
 		pConfig.set("Kills", Integer.valueOf(pConfig.getInt("Kills") + 1));
 		try {
@@ -75,7 +71,7 @@ public class PlayerStatsFileUtils {
 	//****************************//
 
 	public Integer getDeaths(String p) {
-		File pFile = new File(FFA.getPlugin().getDataFolder(), "Players/" + p + ".yml");
+		File pFile = new File(FFA.getPlugin().getDataFolder(), p + ".yml");
 		FileConfiguration pConfig = YamlConfiguration.loadConfiguration(pFile);
 		int deaths = pConfig.getInt("Deaths");
 		return Integer.valueOf(deaths);
@@ -84,7 +80,7 @@ public class PlayerStatsFileUtils {
 	//****************************//
 
 	public void addDeath(String p) {
-		File pFile = new File(FFA.getPlugin().getDataFolder(), "Players/" + p + ".yml");
+		File pFile = new File(FFA.getPlugin().getDataFolder(), p + ".yml");
 		FileConfiguration pConfig = YamlConfiguration.loadConfiguration(pFile);
 		pConfig.set("Deaths", Integer.valueOf(pConfig.getInt("Deaths") + 1));
 		try {

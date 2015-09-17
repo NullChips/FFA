@@ -23,7 +23,7 @@ public class Arena {
 		this.name = (String) FFA.getPlugin().getConfig().get("Arenas." + id + "Name");
 		this.spawn = (Location) FFA.getPlugin().getConfig().get("Arenas." + name + ".Spawn");
 		this.displayItem = (int) FFA.getPlugin().getConfig().get("Arenas." + id + ".DisplayItem");
-		this.spawnHeight = (int) FFA.getPlugin().getConfig().get("Arenas." + id + ".SpawnHeight");
+		//this.spawnHeight = (int) FFA.getPlugin().getConfig().get("Arenas." + id + ".SpawnHeight");
 	}
 
 	public String getName() {

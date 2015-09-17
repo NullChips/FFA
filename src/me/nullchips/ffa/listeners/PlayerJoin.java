@@ -15,6 +15,7 @@ public class PlayerJoin implements Listener {
 	public void onPlayerJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
 	    stats.createFile(p);
+	    stats.addDeath(p.getUniqueId().toString());
 	}
 
 }

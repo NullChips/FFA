@@ -2,6 +2,7 @@ package me.nullchips.ffa.utils;
 
 import java.util.ArrayList;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import me.nullchips.ffa.FFA;
@@ -26,6 +27,8 @@ public class ArenaManager {
 		if (FFA.getPlugin().getConfig().get("Arenas") != null) {
 			for (String arenaId : FFA.getPlugin().getConfig().getConfigurationSection("Arenas").getKeys(true)) {
 				if (!arenaId.contains(".")) {
+					
+					Bukkit.getServer().getLogger().info("Arena " + arenaId + " loaded.");
 					Arena arena = new Arena(arenaId);
 					arena.addArena(arena);
 				}
