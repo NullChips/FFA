@@ -7,9 +7,7 @@ import org.bukkit.entity.Player;
 public class ChatUtils {
 
 	public static void broadcast(String message) {
-
 		Bukkit.getServer().broadcastMessage(ChatColor.DARK_RED + "[" + ChatColor.DARK_AQUA + "ServerName" + ChatColor.DARK_RED + "]" +  ChatColor.GOLD + " " + message);
-
 	}
 
 	public static void noPermission(Player player) {
@@ -30,7 +28,6 @@ public class ChatUtils {
 
 	public static void noArenaPermission(Player p) {
 		p.sendMessage(ChatColor.RED + "You don't have permission to join this arena.");
-
 	}
 
 }

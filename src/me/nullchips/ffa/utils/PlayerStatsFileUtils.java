@@ -19,6 +19,7 @@ public class PlayerStatsFileUtils {
 				pConfig.set("User", p.getUniqueId().toString());
 				pConfig.set("Kills", Integer.valueOf(0));
 				pConfig.set("Deaths", Integer.valueOf(0));
+				pConfig.set("Points", Integer.valueOf(0));
 				pConfig.save(pFile);
 			}
 		catch (Exception e) {
@@ -92,6 +93,53 @@ public class PlayerStatsFileUtils {
 
 	//****************************//
 
+	public Integer getPoints(String p) {
+		File pFile = new File(FFA.getPlugin().getDataFolder(), p + ".yml");
+		FileConfiguration pConfig = YamlConfiguration.loadConfiguration(pFile);
+		int Points = pConfig.getInt("Points");
+		return Integer.valueOf(Points);
+	}
+
+	//****************************//
+
+	public void setPoints(String p, int newAmount) {
+		File pFile = new File(FFA.getPlugin().getDataFolder(), p + ".yml");
+		FileConfiguration pConfig = YamlConfiguration.loadConfiguration(pFile);
+		pConfig.set("Points", Integer.valueOf(newAmount));
+		try {
+			pConfig.save(pFile);
+		} catch (Exception e) {
+		}
+	}
+
+	//****************************//
+
+	public void addPoints(String p, int amountAdded) {
+		File pFile = new File(FFA.getPlugin().getDataFolder(), p + ".yml");
+		FileConfiguration pConfig = YamlConfiguration.loadConfiguration(pFile);
+		pConfig.set("Points", Integer.valueOf(pConfig.getInt("Points") + amountAdded));
+		try {
+			pConfig.save(pFile);
+		} catch (Exception e) {
+		}
+	}
+
+	//****************************//
+
+	public void takePoints(String p, int amountTaken) {
+		File pFile = new File(FFA.getPlugin().getDataFolder(), p + ".yml");
+		FileConfiguration pConfig = YamlConfiguration.loadConfiguration(pFile);
+		int PointsCurrent = pConfig.getInt("Points");
+		if (PointsCurrent - amountTaken >= 0) {
+			int newAmount = PointsCurrent - amountTaken;
+			pConfig.set("Points", Integer.valueOf(newAmount));
+		}
+		try {
+			pConfig.save(pFile);
+		} catch (Exception e) {
+		}
+
+	}
 }
 
 
