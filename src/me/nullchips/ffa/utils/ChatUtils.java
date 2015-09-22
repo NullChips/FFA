@@ -20,17 +20,12 @@ public class ChatUtils {
 		p.sendMessage(ChatColor.DARK_RED + "[" + ChatColor.DARK_AQUA + "ServerName" + ChatColor.DARK_RED + "]" +  ChatColor.GOLD + " " + message);
 	}
 
-	public static void helpop(Player p, Player sendto, String message) {
-		p.sendMessage(ChatColor.DARK_RED + "[" + ChatColor.DARK_AQUA + "ServerName" + ChatColor.DARK_RED + "]" +  ChatColor.GOLD + " You receieved a helpop from: " + ChatColor.AQUA + p.getName());
-		p.sendMessage(ChatColor.DARK_RED + "[" + ChatColor.DARK_AQUA + "ServerName" + ChatColor.DARK_RED + "]" +  ChatColor.GRAY + message);
-	}
-
 	public static void chatMessage(Player p, String message) {
 		Bukkit.getServer().broadcastMessage(ChatColor.AQUA+ p.getName() + ": " + ChatColor.GRAY + message);
 	}
 
-	public static void ffaMessage(String message) {
-		//TODO Create ffaMessage method.
+	public static void ffaMessage(String message, Player p) {
+		p.sendMessage(ChatColor.DARK_RED + "[" + ChatColor.DARK_AQUA + "ServerName" + ChatColor.BLACK + ChatColor.BOLD + "FFA"+ ChatColor.RESET +ChatColor.DARK_RED + "]" +  ChatColor.GOLD + message);
 	}
 
 	public static void noArenaPermission(Player p) {
