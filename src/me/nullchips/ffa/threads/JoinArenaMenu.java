@@ -15,6 +15,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
 import me.nullchips.ffa.FFA;
+import me.nullchips.ffa.handlers.kits.Kit;
+import me.nullchips.ffa.handlers.kits.MCSGKit;
 import me.nullchips.ffa.utils.ArenaManager;
 
 public class JoinArenaMenu implements Listener {
@@ -65,6 +67,11 @@ public class JoinArenaMenu implements Listener {
 			Location l = (Location) FFA.getPlugin().getConfig().get("Arenas.1.SpawnLocation");
 			arenaManager.addArena1Player(p);
 			p.teleport(l);
+			
+			Kit kit = new MCSGKit();
+			
+			kit.giveKit(p, kit);
+			
 			return;
 		}
 
